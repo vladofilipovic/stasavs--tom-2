@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<biblioteka>
+    <knjiga id="1">
+        <naslov>Мислити на Јави</naslov>
+        <autor>Bruce Eckel</autor>
+        <godina>2006</godina>
+    </knjiga>
+    <knjiga id="2">
+        <naslov>Ефективна Јава</naslov>
+        <autor>Joshua Bloch</autor>
+        <godina>2018</godina>
+    </knjiga>
+</biblioteka>

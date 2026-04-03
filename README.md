@@ -94,18 +94,24 @@ Gradle ће аутоматски преузети све потребне биб
    - **Default encoding for properties files**: `UTF-8`
 4. Кликните **Apply**, затим **OK**
 
-### Корак 4 — Покретање примера
+### Корак 4 — Делегирање покретања Gradle-у
 
-**Обични примери (главе 1–4, 6–18 осим JavaFX):**
+Ово подешавање је **обавезно** да би сви примери (укључујући JavaFX) исправно радили:
+
+1. Отворите **File → Settings** (`Ctrl+Alt+S`) на Windows/Linux, или **IntelliJ IDEA → Settings** на macOS
+2. Идите на **Build, Execution, Deployment → Build Tools → Gradle**
+3. Промените **"Build and run using"** са `IntelliJ IDEA` на **`Gradle`**
+4. Промените **"Run tests using"** са `IntelliJ IDEA` на **`Gradle`**
+5. Кликните **Apply**, затим **OK**
+
+### Корак 5 — Покретање примера
 
 1. У панелу **Project** пронађите жељени пример, нпр. `src/rs/math/oop/g01/p01/`
 2. Кликните десним тастером на датотеку која садржи `main()` метод
 3. Изаберите **Run 'ImeKlase.main()'**
 4. Излаз програма појављује се у панелу **Run** при дну екрана
 
-**JavaFX примери (глава 5):**
-
-JavaFX библиотеке се аутоматски преузимају и конфигуришу преко Gradle-а. Покрените JavaFX примере на исти начин као и остале — десни клик → Run.
+> **Напомена:** Сви примери, укључујући JavaFX (глава 5) и JPA/Hibernate (глава 16), покрећу се на исти начин. Gradle аутоматски подешава module-path за JavaFX и classpath за све остале библиотеке.
 
 ## Подешавање пројекта у Eclipse
 
@@ -147,6 +153,7 @@ JavaFX библиотеке се аутоматски преузимају и к
 |---------|--------|
 | `Could not resolve dependencies` | Проверите интернет конекцију — Gradle преузима библиотеке са интернета |
 | Ћирилица се приказује као `????` или `ÐÐ°Ð¼Ð¾` | Подесите кодирање на UTF-8 (Корак 3 у IntelliJ упутству) |
+| `JavaFX runtime components are missing` | У IntelliJ-у: Settings → Build Tools → Gradle → поставите **"Build and run using"** на **Gradle** (Корак 4) |
 | `persistence.xml not found` | Покрените `./gradlew build` да се ресурси правилно копирају |
 | `error: release version 25 not supported` | Инсталирајте JDK 25 и подесите га као Project SDK |
 | IntelliJ не препознаје Gradle | Изаберите **File → Open**, не File → New — IntelliJ мора да види `build.gradle` |

@@ -1,0 +1,168 @@
+% =====================================================================
+%  Објектно оријентисано програмирање — Програмски језик Јава, том 2
+%  LaTeX извор (memoir + listings + XeLaTeX)
+% =====================================================================
+\documentclass[11pt,a4paper,openright,twoside]{memoir}
+
+% --- Кодирање и језик ---------------------------------------------------
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setdefaultlanguage{serbian}
+\setotherlanguage{english}
+
+% Главни фонт — PT Serif (топао serif, пуна ћирилица).
+\setmainfont{DejaVu Serif}[
+  Ligatures=TeX,
+  Scale=0.95
+]
+\setsansfont{DejaVu Sans}[Scale=0.92]
+\setmonofont{DejaVu Sans Mono}[Scale=0.85]
+
+% Размак између линија (као у memoir 6x9 темплејту)
+\linespread{1.22}
+\frenchspacing
+
+% --- Изглед странице (memoir) -------------------------------------------
+\setstocksize{297mm}{210mm}
+\settrimmedsize{297mm}{210mm}{*}
+\settrims{0pt}{0pt}
+\setlrmarginsandblock{28mm}{22mm}{*}
+\setulmarginsandblock{25mm}{30mm}{*}
+\setheadfoot{14pt}{36pt}
+\setheaderspaces{*}{12pt}{*}
+\checkandfixthelayout
+
+% --- Стилови поглавља (као у стандардном LaTeX book class-у) ------------
+\makechapterstyle{bookmatch}{%
+  \renewcommand{\chapnumfont}{\normalfont\huge\bfseries\raggedright}
+  \renewcommand{\chaptitlefont}{\normalfont\Huge\bfseries\raggedright}
+  \renewcommand{\printchaptername}{\chapnumfont\chaptername}
+  \renewcommand{\chapternamenum}{\space}
+  \renewcommand{\printchapternum}{\chapnumfont\thechapter}
+  \renewcommand{\afterchapternum}{\par\nobreak\vskip 20pt}
+  \renewcommand{\printchaptertitle}[1]{\chaptitlefont ##1}
+  \renewcommand{\afterchaptertitle}{%
+    \par\nobreak\vskip 12pt%
+    {\color{black!50}\hrule height 0.4pt}%
+    \par\nobreak\vskip 30pt}
+}
+\chapterstyle{bookmatch}
+\setsecnumdepth{subsection}
+\settocdepth{section}
+\renewcommand{\chaptername}{Поглавље}
+
+% Шира поља за бројеве у садржају (да 11.10, 19.12 не прелазе у текст)
+\setlength{\cftchapternumwidth}{2.4em}
+\setlength{\cftsectionnumwidth}{3.4em}
+\setlength{\cftsubsectionnumwidth}{4.2em}
+\renewcommand{\cftchapterfont}{\normalfont\bfseries}
+\renewcommand{\cftsectionfont}{\normalfont}
+
+% Прелом речи и микротиповe
+\usepackage{microtype}
+\emergencystretch=3em
+\tolerance=1500
+\hbadness=10000
+\hyphenpenalty=50
+\exhyphenpenalty=50
+\sloppybottom
+
+% --- Заглавље/подножје --------------------------------------------------
+\makepagestyle{oopstyle}
+% Парне стране: број странице лево, име поглавља (мала капитала) десно
+\makeevenhead{oopstyle}{\small\thepage}{}{\small\scshape\leftmark}
+% Непарне стране: исти наслов поглавља лево, број странице десно
+\makeoddhead{oopstyle}{\small\scshape\leftmark}{}{\small\thepage}
+\makeheadrule{oopstyle}{\textwidth}{0.4pt}
+\makeevenfoot{oopstyle}{}{}{}
+\makeoddfoot{oopstyle}{}{}{}
+\pagestyle{oopstyle}
+
+% --- Боје и листинзи ----------------------------------------------------
+\usepackage{xcolor}
+\definecolor{codebg}{HTML}{F5F5F5}
+\definecolor{codeframe}{HTML}{CCCCCC}
+\definecolor{codekw}{HTML}{0033B3}
+\definecolor{codestr}{HTML}{067D17}
+\definecolor{codecomment}{HTML}{8C8C8C}
+\definecolor{codetype}{HTML}{000080}
+
+\usepackage{listings}
+% XeLaTeX + fontspec обрађују UTF-8 нативно, тако да `literate` мапирања
+% за ћирилицу нису потребна. Важно је само да `extendedchars=true` и
+% `inputencoding=utf8` буду постављени.
+\lstset{
+  language=Java,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{codekw}\bfseries,
+  stringstyle=\color{codestr},
+  commentstyle=\color{codecomment},
+  numbers=none,
+  showstringspaces=false,
+  tabsize=4,
+  breaklines=true,
+  breakatwhitespace=false,
+  backgroundcolor=\color{codebg},
+  frame=single,
+  rulecolor=\color{codeframe},
+  framesep=4pt,
+  xleftmargin=14pt,
+  xrightmargin=4pt,
+  aboveskip=14pt,
+  belowskip=14pt,
+  extendedchars=true,
+  inputencoding=utf8,
+  upquote=true,
+  columns=fullflexible,
+  keepspaces=true,
+}
+
+% --- Хипервезе ----------------------------------------------------------
+\usepackage[hidelinks,unicode]{hyperref}
+\hypersetup{
+  pdftitle={Објектно оријентисано програмирање — Јава, том 2},
+  pdfauthor={Сташа Вујичић Станковић и сарадници},
+  pdfsubject={Уџбеник из ООП-а},
+  pdflang={sr},
+  bookmarksopen=true
+}
+
+% --- Графика и тaбеле ---------------------------------------------------
+\usepackage{amssymb}
+\usepackage{needspace}
+\usepackage{graphicx}
+\usepackage{float}  % za [H] placement
+\usepackage{enumitem}
+\graphicspath{{./figures/}}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+
+% --- Прилагођене команде ------------------------------------------------
+\newcommand{\primer}[1]{\noindent\textbf{Пример #1.}\enspace}
+
+% =====================================================================
+\begin{document}
+
+\frontmatter
+\begin{titlingpage}
+  \begin{center}
+    {\Large Универзитет у Београду}\\
+    {\large Математички факултет}\\[3cm]
+    {\Huge\bfseries ОБЈЕКТНО ОРИЈЕНТИСАНО ПРОГРАМИРАЊЕ}\\[0.8cm]
+    {\LARGE ПРОГРАМСКИ ЈЕЗИК ЈАВА -- 2}\\[\fill]\vspace*{2cm}
+    {\Large Сташа Вујичић Станковић}\\[0.15cm]
+    {\Large Владимир Филиповић}\\[0.15cm]
+    {\Large Александар Картељ}\\[0.15cm]
+    {\Large Душан Тошић}\\[\fill]
+    {\large Београд, 2026.}
+  \end{center}
+\end{titlingpage}
+
+\tableofcontents
+\clearpage
+
+\mainmatter
+\input{book-body.tex}
+
+\end{document}

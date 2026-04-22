@@ -4,3 +4,9 @@ out/
 *.iml
 .DS_Store
 Thumbs.db
+/.gradle/
+/.settings/
+/bin/
+/build/
+.project
+.classpath
